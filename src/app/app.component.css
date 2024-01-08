@@ -1,0 +1,65 @@
+/*
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+*/
+mat-grid-list {
+  width: 100%; /* Allow the grid list to expand to the full width */
+  max-width: 1200px; /* Set a maximum width for the grid list */
+}
+
+mat-card {
+  width: 100%; /* Allow the cards to expand to the full width of their container */
+  margin-bottom: 20px;
+}
+
+:host {
+  height: 100%;
+  display: block;
+}
+
+h1 { color: #7c795d; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0; }
+
+
+h2 { color: #7c795d; font-family: 'Source Sans Pro', sans-serif; font-size: 28px; font-weight: 400; line-height: 32px; margin: 0 0 24px; }
+
+.container {
+  width: 100%;
+  display: flex;
+  border: 1px solid #ccc;
+}
+
+.left-item, .right-item {
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.left-item {
+  border-right: 1px solid #ccc; /* Add a border between the items */
+}
+
+
+.cardList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+/* Column Gap */
+.cardList > * {
+  box-sizing: border-box;
+  box-shadow: 10px 10px 5px 5px #4b030f;
+}
+.cardList > *:not(:last-child) {
+  margin-right: 32px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+/* Item sizing */
+.cardListItem {
+  flex: 0 1 calc(33.3% - 32px);
+}

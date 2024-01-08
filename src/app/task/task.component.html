@@ -1,0 +1,75 @@
+<div *ngIf="!isEditable; else editableTemplate" class="task-container">
+    <div class="task-info">
+      <p><strong>Description:</strong> {{ task.description }}</p>
+      <p><strong>Due Date:</strong> {{ task.dueDate | date: 'yyyy-MM-dd' }}</p>
+      <p><strong>Completed:</strong> {{ task.completed ? 'Yes' : 'No' }}</p>
+      <p><strong>User:</strong> {{ getUserById(task.userId)?.name }}</p>
+      <div>
+        <mat-icon [style.color]="task.completed ? 'green' : 'red'" *ngIf="task.completed">check_circle</mat-icon>
+        <mat-icon [style.color]="!task.completed ? 'red' : 'green'" *ngIf="!task.completed">cancel</mat-icon>
+      </div>
+    </div>
+    <button (click)="toggleEditMode()" disabled>Edit</button>
+  </div>
+
+  
+  <!--ng-template #editableTemplate>
+    <form #taskForm="ngForm" >
+    <div class="task-container">
+      <div class="task-input">
+        <label>Description:</label>
+        <input type="text" [(ngModel required)]="task.description"/>
+      </div>
+      <div class="task-input">
+        <label>Due Date:</label>
+        <input type="date" [(ngModel required)]="task.dueDate" />
+      </div>
+      <div class="task-input">
+        <label>Completed:</label>
+        <input type="checkbox" [(ngModel)]="task.completed" />
+      </div>
+      <div class="task-input">
+        <label>User:</label>
+        <select [(ngModel required)]="task.userId" >
+          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+        </select>
+      </div>
+      <div>
+      </div>
+      <button  type="submit" [disabled]="!taskForm.form.valid" (click)="saveChanges()">Save</button>
+      
+    </div>
+    </form>
+  </ng-template-->
+
+
+  <ng-template #editableTemplate>
+    <form #taskForm="ngForm" (ngSubmit)="saveChanges()">
+      <div class="task-container">
+        <div class="task-input">
+          <label>Description:</label>
+          <input type="text" [(ngModel)]="task.description" name="description" required>
+        </div>
+        <div class="task-input">
+          <label>Due Date:</label>
+          <input type="date" [(ngModel)]="task.dueDate" name="dueDate" required>
+        </div>
+        <div class="task-input">
+          <label>Completed:</label>
+          <input type="checkbox" [(ngModel)]="task.completed" name="completed">
+        </div>
+        <div class="task-input">
+          <label>User:</label>
+          <select [(ngModel)]="task.userId" name="userId" required>
+            <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+          </select>
+        </div>
+        <div>
+          <!-- Additional content if needed -->
+        </div>
+        <button type="submit" [disabled]="!taskForm.form.valid">Save</button>
+        <!--button (click)="cancelEdit()" disabled>Cancel</button-->
+      </div>
+    </form>
+  </ng-template>
+

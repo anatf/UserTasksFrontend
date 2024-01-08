@@ -1,0 +1,16 @@
+<form>
+    <table id="users">
+      <thead> <!-- Use thead for table headers -->
+        <tr>
+          <th>User Name</th>
+          <th>Active Tasks Count</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let record of users">
+        <tr>
+          <td>{{record.name}}</td>
+          <td>{{record.taskCount}}</td>
+        </tr>
+      </tbody>
+    </table>
+</form>
